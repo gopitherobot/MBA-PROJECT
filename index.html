@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expert Survey ‚Äî Three-Pipeline Patient Data Framework</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--black:#111;--dark:#333;--mid:#666;--light:#aaa;--border:#e0e0e0;--bg:#f4f4f4;--card:#fff;--r:10px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,sans-serif;background:var(--bg);color:var(--black);font-size:15px;line-height:1.6}
+.topbar{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--border)}
+.topbar-inner{max-width:660px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:11px 16px}
+.brand{font-size:13px;font-weight:600;white-space:nowrap;flex-shrink:0}
+.pt{flex:1;height:3px;background:#e8e8e8;border-radius:2px;overflow:hidden}
+.pf{height:100%;background:var(--black);border-radius:2px;transition:width .35s}
+.pl{font-size:12px;color:var(--light);flex-shrink:0;min-width:36px;text-align:right}
+.tabs{display:flex;gap:4px;padding:10px 16px;overflow-x:auto;scrollbar-width:none;background:#fff;border-bottom:1px solid var(--border)}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex-shrink:0;padding:5px 13px;border-radius:20px;font-size:12px;font-weight:500;cursor:pointer;background:#f0f0f0;border:none;color:var(--mid);transition:all .2s}
+.tab.on{background:var(--black);color:#fff}
+.shell{max-width:660px;margin:0 auto;padding:22px 16px 80px}
+.hdr{background:var(--black);color:#fff;border-radius:var(--r);padding:26px 22px 22px;margin-bottom:18px}
+.hdr-tag{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#888;margin-bottom:6px}
+.hdr-title{font-size:19px;font-weight:600;line-height:1.35;margin-bottom:5px}
+.hdr-sub{font-size:12.5px;color:#999;line-height:1.6;margin-bottom:14px;font-style:italic}
+.chips{display:flex;flex-wrap:wrap;gap:5px}
+.chip{font-size:11px;font-weight:500;padding:2px 9px;border-radius:20px;background:rgba(255,255,255,.1);color:#ccc}
+.page{display:none}.page.on{display:block}
+.sh{margin-bottom:18px}.sh h2{font-size:17px;font-weight:600;margin-bottom:4px}.sh p{font-size:13px;color:var(--mid);line-height:1.6}
+.card{background:var(--card);border-radius:var(--r);border:1px solid var(--border);padding:18px;margin-bottom:11px}
+.card:focus-within{border-color:#aaa}
+.lbl{font-size:13px;font-weight:600;margin-bottom:7px;display:block}
+.soft{font-weight:400;color:var(--light);font-size:12px;margin-left:3px}
+.hint{font-size:12px;color:var(--light);margin-bottom:9px;font-style:italic}
+.iline{display:block;width:100%;border:none;border-bottom:1.5px solid var(--border);padding:7px 0;font-size:15px;color:var(--black);background:transparent;outline:none;transition:border .2s}
+.iline:focus{border-bottom-color:var(--black)}
+.iline::placeholder{color:#ccc}
+textarea.iline{resize:vertical;min-height:160px;border:1.5px solid var(--border);padding:9px 10px;border-radius:6px;font-size:14px;line-height:1.55}
+textarea.iline:focus{border-color:var(--black)}
+.pills{display:flex;flex-wrap:wrap;gap:5px;margin-top:5px}
+.pill{display:flex;align-items:center;gap:6px;padding:6px 13px;border-radius:20px;border:1.5px solid var(--border);cursor:pointer;font-size:13px;font-weight:500;color:var(--dark);transition:all .15s;user-select:none}
+.pill:hover{border-color:#bbb}
+.pill input{display:none}
+.pill.on{border-color:var(--black);background:var(--black);color:#fff}
+.dot{width:7px;height:7px;border-radius:50%;border:1.5px solid currentColor;flex-shrink:0}
+.pill.on .dot{background:currentColor}
+.cbox{background:#f7f7f7;border:1px solid var(--border);border-radius:6px;padding:16px;font-size:13px;color:var(--dark);line-height:1.75;margin-bottom:14px}
+.info{background:#f5f5f5;border-left:3px solid var(--black);border-radius:0 6px 6px 0;padding:11px 13px;font-size:13px;color:var(--dark);line-height:1.65;margin-bottom:13px}
+.info strong{font-weight:600}
+.hr{border:none;border-top:1px solid var(--border);margin:20px 0}
+.ic{border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:10px;background:var(--card)}
+.ic:focus-within{border-color:#aaa}
+.ic.eg{background:#f9f9f9;border-style:dashed}
+.inum{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:var(--black);color:#fff;font-size:11px;font-weight:700;margin-bottom:10px}
+.eglbl{display:inline-block;font-size:10px;font-weight:700;background:#ebebeb;color:var(--mid);padding:1px 6px;border-radius:3px;margin-bottom:10px}
+.iq{font-size:13px;font-weight:600;color:var(--dark);margin:10px 0 5px}
+.iq:first-of-type{margin-top:0}
+.tw{overflow-x:auto;margin-top:6px}
+table.t{width:100%;border-collapse:collapse;font-size:13px}
+table.t th{background:var(--black);color:#fff;padding:9px;font-weight:500;font-size:12px;text-align:left}
+table.t td{border:1px solid var(--border);padding:7px 9px;vertical-align:top;background:#fff}
+table.t tr:nth-child(even) td{background:#fafafa}
+table.t td.s{font-weight:600;font-size:12px;color:var(--dark)}
+table.t input{width:100%;border:none;border-bottom:1px solid #e8e8e8;padding:3px 0;font-size:13px;background:transparent;outline:none}
+table.t input:focus{border-bottom-color:var(--black)}
+.br{display:flex;gap:9px;margin-top:22px;flex-wrap:wrap;align-items:center}
+.btn{padding:10px 26px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all .2s}
+.bp{background:var(--black);color:#fff}.bp:hover{background:#2a2a2a}
+.bs{background:transparent;border:1.5px solid var(--border);color:var(--dark)}.bs:hover{border-color:#aaa;background:#f5f5f5}
+.bsub{background:var(--black);color:#fff;padding:12px 32px;font-size:15px}
+.bsub:disabled{background:#ccc;cursor:not-allowed}
+.spin{display:inline-block;width:13px;height:13px;border:2px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:sp .7s linear infinite;margin-right:7px;vertical-align:middle}
+@keyframes sp{to{transform:rotate(360deg)}}
+.cfm{display:none;text-align:center;padding:56px 20px}
+.cfm.on{display:block}
+.cm{font-size:44px;margin-bottom:18px}
+.ct{font-size:21px;font-weight:600;margin-bottom:10px}
+.cx{font-size:14px;color:var(--mid);line-height:1.8}
+@media(max-width:480px){.pills{gap:4px}.pill{padding:5px 10px;font-size:12px}table.t{font-size:12px}table.t th,table.t td{padding:6px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">Three-Pipeline CRF</div>
+    <div class="pt"><div class="pf" id="pf" style="width:20%"></div></div>
+    <div class="pl" id="pl">1 / 5</div>
+  </div>
+</div>
+
+<div class="tabs" id="tabs">
+  <button class="tab on" onclick="go(0)">About You</button>
+  <button class="tab"    onclick="go(1)">Anatomical</button>
+  <button class="tab"    onclick="go(2)">Physiological</button>
+  <button class="tab"    onclick="go(3)">Biochemical</button>
+  <button class="tab"    onclick="go(4)">Cross-Pipeline</button>
+  <button class="tab"    onclick="go(5)">Patient Timeline</button>
+</div>
+
+<div class="shell">
+
+<div class="hdr">
+  <div class="hdr-tag">Expert Survey ¬∑ Case Report Form</div>
+  <div class="hdr-title">Healthcare Data &amp; Patient Management Systems</div>
+  <div class="hdr-sub">Validating a Three-Pipeline Patient Data Framework across Specialist Consultants in India</div>
+  <div class="chips">
+    <span class="chip">MBA Healthcare Management</span>
+    <span class="chip">SRM University (Online)</span>
+    <span class="chip">Dr Gopikrishnan Palanivel</span>
+    <span class="chip">Guide: Dr Gowri Shankar</span>
+  </div>
+</div>
+
+<!-- PAGE 0 -->
+<div class="page on" id="pg0">
+  <div class="sh"><h2>About You</h2><p>A few details to help analyse responses by specialty. All data is fully anonymised.</p></div>
+
+  <div class="card">
+    <label class="lbl">Full name<span class="soft">(optional)</span></label>
+    <input class="iline" type="text" id="f_name" placeholder="Dr / Prof ‚Ä¶">
+  </div>
+  <div class="card">
+    <label class="lbl">Medical specialty &amp; sub-specialty *</label>
+    <input class="iline" type="text" id="f_spec" placeholder="e.g. Cardiology ¬∑ Interventional" required>
+  </div>
+  <div class="card">
+    <label class="lbl">Primary organ / organ system *</label>
+    <input class="iline" type="text" id="f_organ" placeholder="e.g. Heart, Kidneys, Brain ‚Ä¶" required>
+  </div>
+  <div class="card">
+    <label class="lbl">Hospital name<span class="soft">(optional)</span></label>
+    <input class="iline" type="text" id="f_hosp" placeholder="e.g. Apollo Hospitals, AIIMS, KMC">
+  </div>
+  <div class="card">
+    <label class="lbl">City &amp; State<span class="soft">(optional)</span></label>
+    <input class="iline" type="text" id="f_city" placeholder="e.g. Chennai, Tamil Nadu">
+  </div>
+
+  <div class="hr"></div>
+  <div class="sh" style="margin-top:20px"><h2>Consent</h2></div>
+
+  <div class="card">
+    <div class="cbox">
+      We deeply appreciate you taking time from your busy clinical schedule to contribute to this research. Your expert opinion is invaluable to this study.<br><br>
+      Please be assured that all responses are completely anonymised ‚Äî your name will never appear in any report, publication, or presentation. This survey is purely for academic research under the MBA Healthcare Management programme at SRM University (Online).
+    </div>
+    <label class="lbl">Do you agree to participate? *</label>
+    <div class="pills">
+      <label class="pill"><input type="radio" name="consent" value="Agree"><span class="dot"></span>Yes, I agree</label>
+      <label class="pill"><input type="radio" name="consent" value="Disagree"><span class="dot"></span>No, I disagree</label>
+    </div>
+  </div>
+
+  <div class="br"><button class="btn bp" onclick="nxt(0)">Next: Anatomical Data ‚Üí</button></div>
+</div>
+
+<!-- PAGE 1 -->
+<div class="page" id="pg1">
+  <div class="sh">
+    <h2>Anatomical Data ‚Äî Pipeline 1</h2>
+    <p>Structural, episodic information ‚Äî imaging, endoscopy, biopsy.<br><strong>What does the organ look like?</strong></p>
+  </div>
+  <div class="info"><strong>List your top 5 investigations</strong> that give you structural information about your organ of interest. For each one, answer the three questions below.</div>
+  <div id="c_anat"></div>
+  <div class="br">
+    <button class="btn bs" onclick="go(0)">‚Üê Back</button>
+    <button class="btn bp" onclick="nxt(1)">Next: Physiological Data ‚Üí</button>
+  </div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="pg2">
+  <div class="sh">
+    <h2>Physiological Data ‚Äî Pipeline 2</h2>
+    <p>Real-time, continuous functional measurements ‚Äî monitoring, ECG, spirometry.<br><strong>How is the organ functioning right now?</strong></p>
+  </div>
+  <div class="info"><strong>List your top 5 investigations or monitoring parameters</strong> that give you real-time functional information. For each one, answer the three questions below.</div>
+  <div id="c_phys"></div>
+  <div class="br">
+    <button class="btn bs" onclick="go(1)">‚Üê Back</button>
+    <button class="btn bp" onclick="nxt(2)">Next: Biochemical Data ‚Üí</button>
+  </div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="pg3">
+  <div class="sh">
+    <h2>Biochemical Data ‚Äî Pipeline 3</h2>
+    <p>Trend-based laboratory measurements ‚Äî blood tests, urine, biomarkers.<br><strong>What is happening inside the organ over time?</strong></p>
+  </div>
+  <div class="info"><strong>List your top 5 laboratory investigations or biomarkers.</strong> For each one, answer the three questions below.</div>
+  <div id="c_bioc"></div>
+  <div class="br">
+    <button class="btn bs" onclick="go(2)">‚Üê Back</button>
+    <button class="btn bp" onclick="nxt(3)">Next: Cross-Pipeline ‚Üí</button>
+  </div>
+</div>
+
+<!-- PAGE 4 -->
+
+<!-- PAGE 4 ‚Äî CROSS-PIPELINE -->
+<div class="page" id="pg4">
+  <div class="sh">
+    <h2>Cross-Pipeline Data <span style="font-size:14px;font-weight:400;color:var(--mid)">(Optional)</span></h2>
+    <p>Parameters whose clinical meaning spans two or more pipelines simultaneously.<br>
+    <strong>Which investigations link structural, functional, and biochemical data together?</strong></p>
+  </div>
+  <div class="info"><strong>List up to 5 parameters</strong> that draw clinical meaning from two or more pipelines at once ‚Äî for example, a structural finding that only makes sense alongside a biochemical result. You may re-list parameters already mentioned in the previous sections.</div>
+  <div id="c_cross"></div>
+  <div class="br">
+    <button class="btn bs" onclick="go(3)">‚Üê Back</button>
+    <button class="btn bp" onclick="nxt(4)">Next: Patient Timeline ‚Üí</button>
+  </div>
+</div>
+
+<div class="page" id="pg5">
+  <div class="sh">
+    <h2>Patient Management Timeline</h2>
+    <p>How does each data pipeline contribute to clinical decisions across the patient's disease journey?</p>
+  </div>
+
+  <div class="card">
+    <label class="lbl">Q1 ‚Äî For your specialty organ, which investigations from each pipeline are most critical at each stage of patient management?</label>
+    <div class="tw">
+      <table class="t">
+        <thead><tr>
+          <th style="width:24%">Patient stage</th>
+          <th>Pipeline 1 ‚Äî Anatomical</th>
+          <th>Pipeline 2 ‚Äî Physiological</th>
+          <th>Pipeline 3 ‚Äî Biochemical</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="s">Acute</td><td><input type="text" id="t00"></td><td><input type="text" id="t01"></td><td><input type="text" id="t02"></td></tr>
+          <tr><td class="s">Sub-acute</td><td><input type="text" id="t10"></td><td><input type="text" id="t11"></td><td><input type="text" id="t12"></td></tr>
+          <tr><td class="s">Chronic</td><td><input type="text" id="t20"></td><td><input type="text" id="t21"></td><td><input type="text" id="t22"></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <label class="lbl">Any other observations<span class="soft">(optional)</span></label>
+    <div class="hint">Additional insights on healthcare data, digitalisation, or patient management in your specialty.</div>
+    <textarea class="iline" id="f_add" placeholder="Write here‚Ä¶"></textarea>
+  </div>
+
+  <div class="br">
+    <button class="btn bs" onclick="go(3)">‚Üê Back</button>
+    <button class="btn bsub" id="sbtn" onclick="doSubmit()">Submit Survey</button>
+  </div>
+  <p style="font-size:12px;color:var(--light);margin-top:9px">Submitting confirms your consent given on page 1.</p>
+</div>
+
+<!-- Confirmation -->
+<div class="cfm" id="cfm">
+  <div class="cm">‚úì</div>
+  <div class="ct">Survey submitted ‚Äî thank you</div>
+  <div class="cx">
+    Thank you, <strong id="cfmName">Doctor</strong>.<br>
+    Your clinical insights are the foundation of the Three-Pipeline Patient Data Framework for Indian patient management systems.<br><br>
+    <em>Dr Gowri Shankar (Guide) ¬∑ MBA Healthcare Management ¬∑ SRM University (Online)</em>
+  </div>
+</div>
+
+</div>
+
+<script>
+const SUBMIT_URL = "https://script.google.com/macros/s/AKfycbxgO0QWc4GmZFYlFnWJhkCvm4vHNPnxQDDsrVzoJdoCWYW6x9gBiFO6ACj2f18x_xfJ/exec";
+
+const FREQ = ["Every patient","Most cases","Selective cases","Rarely / special situations"];
+const IMP  = ["5 ‚Äî Cannot omit","4 ‚Äî Important","3 ‚Äî Routinely useful","2 ‚Äî Sometimes useful","1 ‚Äî Rarely relevant"];
+const EG   = {
+  anat:{ n:"Echocardiogram (2D + Doppler)",           f:"Every patient",   i:"5 ‚Äî Cannot omit", c:"Confirms structural integrity of valves and chamber dimensions ‚Äî defines the anatomical baseline for all management decisions" },
+  phys:{ n:"Continuous SpO2 monitoring",              f:"Every patient",   i:"5 ‚Äî Cannot omit", c:"Real-time respiratory and circulatory adequacy ‚Äî a sustained drop below 94% triggers immediate clinical review" },
+  bioc:{ n:"Serum Troponin I (serial: 0h ¬∑ 3h ¬∑ 6h)", f:"Selective cases", i:"5 ‚Äî Cannot omit", c:"Rise-and-fall kinetic pattern confirms or excludes acute myocardial injury ‚Äî the trend across time points is diagnostic" },
+  cross:{ n:"Echocardiogram + BNP trend", lnk:"A‚ÜîB", f:"Selective cases", i:"5 ‚Äî Cannot omit", c:"Structural finding (echo) combined with biochemical severity marker (BNP) together stage heart failure ‚Äî neither pipeline alone is sufficient for the management decision" }
+};
+
+function buildCards(cid, pfx, eg) {
+  const el = document.getElementById(cid);
+  if(!el) return;
+  const mkPills = (opts, sel, nm, dis) =>
+    opts.map(o => `<label class="pill${o===sel?' on':''}"${dis?' style="pointer-events:none"':''}><input type="radio" name="${nm}" value="${o}"${dis?' disabled':''}><span class="dot"></span>${o}</label>`).join('');
+  let h = `<div class="ic eg">
+    <span class="eglbl">EXAMPLE</span>
+    <div class="iq">Investigation / test name</div>
+    <input class="iline" type="text" value="${eg.n}" disabled style="color:#aaa;border-color:#eee">
+    <div class="iq">How often do you use this?</div>
+    <div class="pills">${mkPills(FREQ,eg.f,'',true)}</div>
+    <div class="iq">How important for clinical decisions?</div>
+    <div class="pills">${mkPills(IMP,eg.i,'',true)}</div>
+    <div class="iq">What does this tell you about the organ?</div>
+    <input class="iline" type="text" value="${eg.c}" disabled style="color:#aaa;border-color:#eee">
+  </div>`;
+  for(let i=1;i<=5;i++){
+    h+=`<div class="ic">
+      <div class="inum">${i}</div>
+      <div class="iq">Investigation / test name</div>
+      <input class="iline" type="text" id="${pfx}_n${i}" placeholder="Name the investigation, scan, or test‚Ä¶">
+      <div class="iq">How often do you use this?</div>
+      <div class="pills">${mkPills(FREQ,'',`${pfx}_f${i}`,false)}</div>
+      <div class="iq">How important for clinical decisions?</div>
+      <div class="pills">${mkPills(IMP,'',`${pfx}_i${i}`,false)}</div>
+      <div class="iq">What does this tell you about the organ?</div>
+      <input class="iline" type="text" id="${pfx}_c${i}" placeholder="One or two lines ‚Äî what clinical information does this provide?">
+    </div>`;
+  }
+  el.innerHTML = h;
+  wire(el);
+}
+
+function wire(root){
+  (root||document).querySelectorAll('.pill input[type=radio]').forEach(r=>{
+    r.addEventListener('change',()=>{
+      const row=r.closest('.pills');
+      if(!row)return;
+      row.querySelectorAll('.pill').forEach(p=>p.classList.remove('on'));
+      r.closest('.pill').classList.add('on');
+    });
+  });
+}
+
+function go(n){
+  document.querySelectorAll('.page').forEach((p,i)=>p.classList.toggle('on',i===n));
+  document.querySelectorAll('.tab').forEach((b,i)=>b.classList.toggle('on',i===n));
+  document.getElementById('pf').style.width=((n+1)/6*100)+'%';
+  document.getElementById('pl').textContent=(n+1)+' / 6';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function nxt(n){ if(chk(n)) go(n+1); }
+
+function chk(n){
+  if(n===0){
+    if(!g('f_spec')){alert('Please enter your specialty.');return false;}
+    if(!g('f_organ')){alert('Please enter your primary organ of interest.');return false;}
+    const c=q('consent');
+    if(!c){alert('Please indicate your consent decision.');return false;}
+    if(c==='Disagree'){alert('Thank you for your time. The survey requires your consent to continue.');return false;}
+  }
+  return true;
+}
+
+function collect(){
+  const d={
+    timestamp:new Date().toISOString(),
+    name:g('f_name'),specialty:g('f_spec'),organ:g('f_organ'),
+    hospital:g('f_hosp'),city:g('f_city'),consent:q('consent'),additional:g('f_add')
+  };
+  ['anat','phys','bioc'].forEach(p=>{
+    for(let i=1;i<=5;i++){
+      d[`${p}_${i}_name`]=g(`${p}_n${i}`);
+      d[`${p}_${i}_freq`]=q(`${p}_f${i}`);
+      d[`${p}_${i}_imp`]=q(`${p}_i${i}`);
+      d[`${p}_${i}_clarity`]=g(`${p}_c${i}`);
+    }
+  });
+  ['acute','subacute','chronic'].forEach((s,si)=>{
+    d[`tl_${s}_p1`]=g(`t${si}0`);d[`tl_${s}_p2`]=g(`t${si}1`);d[`tl_${s}_p3`]=g(`t${si}2`);
+  });
+  // Cross-pipeline
+  ['anat','phys','bioc'].forEach(p=>{
+    for(let i=1;i<=5;i++){
+      d[`cross_${i}_name`]=g(`cross_n${i}`);
+      d[`cross_${i}_link`]=q(`cross_l${i}`);
+      d[`cross_${i}_freq`]=q(`cross_f${i}`);
+      d[`cross_${i}_imp`]=q(`cross_i${i}`);
+      d[`cross_${i}_clarity`]=g(`cross_c${i}`);
+    }
+  });
+  return d;
+}
+
+function g(id){const e=document.getElementById(id);return e?e.value.trim():'';}
+function q(nm){const e=document.querySelector(`input[name="${nm}"]:checked`);return e?e.value:'';}
+
+async function doSubmit(){
+  const btn=document.getElementById('sbtn');
+  const data=collect();
+  btn.disabled=true;
+  btn.innerHTML='<span class="spin"></span>Submitting‚Ä¶';
+  try{await fetch(SUBMIT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});}catch(_){}
+  document.querySelectorAll('.page').forEach(p=>{p.style.display='none';});
+  document.querySelector('.topbar').style.display='none';
+  document.querySelector('.tabs').style.display='none';
+  document.querySelector('.hdr').style.display='none';
+  document.getElementById('cfmName').textContent=data.name||'Doctor';
+  document.getElementById('cfm').classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+
+function buildCrossCards(cid, eg) {
+  const el = document.getElementById(cid);
+  if(!el) return;
+  const LNK = ["A‚ÜîP (Anatomical ‚Üî Physiological)","P‚ÜîB (Physiological ‚Üî Biochemical)","A‚ÜîB (Anatomical ‚Üî Biochemical)","All three pipelines"];
+  const mkPills = (opts, sel, nm, dis) =>
+    opts.map(o => `<label class="pill${o===sel?' on':''}"${dis?' style="pointer-events:none"':''}><input type="radio" name="${nm}" value="${o}"${dis?' disabled':''}><span class="dot"></span>${o}</label>`).join('');
+  let h = `<div class="ic eg">
+    <span class="eglbl">EXAMPLE</span>
+    <div class="iq">Investigation / parameter name</div>
+    <input class="iline" type="text" value="${eg.n}" disabled style="color:#aaa;border-color:#eee">
+    <div class="iq">Which pipelines does this parameter link?</div>
+    <div class="pills">${mkPills(LNK,eg.lnk,'',true)}</div>
+    <div class="iq">How often do you use this combination?</div>
+    <div class="pills">${mkPills(FREQ,eg.f,'',true)}</div>
+    <div class="iq">How important is this combination for clinical decisions?</div>
+    <div class="pills">${mkPills(IMP,eg.i,'',true)}</div>
+    <div class="iq">What does the combination tell you that no single pipeline could?</div>
+    <input class="iline" type="text" value="${eg.c}" disabled style="color:#aaa;border-color:#eee">
+  </div>`;
+  for(let i=1;i<=5;i++){
+    h+=`<div class="ic">
+      <div class="inum">${i}</div>
+      <div class="iq">Investigation / parameter name</div>
+      <input class="iline" type="text" id="cross_n${i}" placeholder="Name the investigation or parameter‚Ä¶">
+      <div class="iq">Which pipelines does this parameter link?</div>
+      <div class="pills">${mkPills(LNK,'',`cross_l${i}`,false)}</div>
+      <div class="iq">How often do you use this combination?</div>
+      <div class="pills">${mkPills(FREQ,'',`cross_f${i}`,false)}</div>
+      <div class="iq">How important for clinical decisions?</div>
+      <div class="pills">${mkPills(IMP,'',`cross_i${i}`,false)}</div>
+      <div class="iq">What does the combination tell you that no single pipeline could?</div>
+      <input class="iline" type="text" id="cross_c${i}" placeholder="Describe the additional clinical insight‚Ä¶">
+    </div>`;
+  }
+  el.innerHTML = h;
+  wire(el);
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  buildCards('c_anat','anat',EG.anat);
+  buildCards('c_phys','phys',EG.phys);
+  buildCards('c_bioc','bioc',EG.bioc);
+  buildCrossCards('c_cross',EG.cross);
+  wire();
+});
+</script>
+</body>
+</html>
