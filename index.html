@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Expert Survey ‚Äî Three-Pipeline Patient Data Framework</title>
+<title>Expert Survey — Three-Pipeline Patient Data Framework</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--black:#111;--dark:#333;--mid:#666;--light:#aaa;--border:#e0e0e0;--bg:#f4f4f4;--card:#fff;--r:10px}
@@ -101,7 +101,7 @@ table.t input:focus{border-bottom-color:var(--black)}
 <div class="shell">
 
 <div class="hdr">
-  <div class="hdr-tag">Expert Survey ¬∑ Case Report Form</div>
+  <div class="hdr-tag">Expert Survey · Case Report Form</div>
   <div class="hdr-title">Healthcare Data &amp; Patient Management Systems</div>
   <div class="hdr-sub">Validating a Three-Pipeline Patient Data Framework across Specialist Consultants in India</div>
   <div class="chips">
@@ -118,15 +118,15 @@ table.t input:focus{border-bottom-color:var(--black)}
 
   <div class="card">
     <label class="lbl">Full name<span class="soft">(optional)</span></label>
-    <input class="iline" type="text" id="f_name" placeholder="Dr / Prof ‚Ä¶">
+    <input class="iline" type="text" id="f_name" placeholder="Dr / Prof …">
   </div>
   <div class="card">
     <label class="lbl">Medical specialty &amp; sub-specialty *</label>
-    <input class="iline" type="text" id="f_spec" placeholder="e.g. Cardiology ¬∑ Interventional" required>
+    <input class="iline" type="text" id="f_spec" placeholder="e.g. Cardiology · Interventional" required>
   </div>
   <div class="card">
     <label class="lbl">Primary organ / organ system *</label>
-    <input class="iline" type="text" id="f_organ" placeholder="e.g. Heart, Kidneys, Brain ‚Ä¶" required>
+    <input class="iline" type="text" id="f_organ" placeholder="e.g. Heart, Kidneys, Brain …" required>
   </div>
   <div class="card">
     <label class="lbl">Hospital name<span class="soft">(optional)</span></label>
@@ -143,7 +143,7 @@ table.t input:focus{border-bottom-color:var(--black)}
   <div class="card">
     <div class="cbox">
       We deeply appreciate you taking time from your busy clinical schedule to contribute to this research. Your expert opinion is invaluable to this study.<br><br>
-      Please be assured that all responses are completely anonymised ‚Äî your name will never appear in any report, publication, or presentation. This survey is purely for academic research under the MBA Healthcare Management programme at SRM University (Online).
+      Please be assured that all responses are completely anonymised — your name will never appear in any report, publication, or presentation. This survey is purely for academic research under the MBA Healthcare Management programme at SRM University (Online).
     </div>
     <label class="lbl">Do you agree to participate? *</label>
     <div class="pills">
@@ -152,65 +152,65 @@ table.t input:focus{border-bottom-color:var(--black)}
     </div>
   </div>
 
-  <div class="br"><button class="btn bp" onclick="nxt(0)">Next: Anatomical Data ‚Üí</button></div>
+  <div class="br"><button class="btn bp" onclick="nxt(0)">Next: Anatomical Data →</button></div>
 </div>
 
 <!-- PAGE 1 -->
 <div class="page" id="pg1">
   <div class="sh">
-    <h2>Anatomical Data ‚Äî Pipeline 1</h2>
-    <p>Structural, episodic information ‚Äî imaging, endoscopy, biopsy.<br><strong>What does the organ look like?</strong></p>
+    <h2>Anatomical Data — Pipeline 1</h2>
+    <p>Structural, episodic information — imaging, endoscopy, biopsy.<br><strong>What does the organ look like?</strong></p>
   </div>
   <div class="info"><strong>List your top 5 investigations</strong> that give you structural information about your organ of interest. For each one, answer the three questions below.</div>
   <div id="c_anat"></div>
   <div class="br">
-    <button class="btn bs" onclick="go(0)">‚Üê Back</button>
-    <button class="btn bp" onclick="nxt(1)">Next: Physiological Data ‚Üí</button>
+    <button class="btn bs" onclick="go(0)">← Back</button>
+    <button class="btn bp" onclick="nxt(1)">Next: Physiological Data →</button>
   </div>
 </div>
 
 <!-- PAGE 2 -->
 <div class="page" id="pg2">
   <div class="sh">
-    <h2>Physiological Data ‚Äî Pipeline 2</h2>
-    <p>Real-time, continuous functional measurements ‚Äî monitoring, ECG, spirometry.<br><strong>How is the organ functioning right now?</strong></p>
+    <h2>Physiological Data — Pipeline 2</h2>
+    <p>Real-time, continuous functional measurements — monitoring, ECG, spirometry.<br><strong>How is the organ functioning right now?</strong></p>
   </div>
   <div class="info"><strong>List your top 5 investigations or monitoring parameters</strong> that give you real-time functional information. For each one, answer the three questions below.</div>
   <div id="c_phys"></div>
   <div class="br">
-    <button class="btn bs" onclick="go(1)">‚Üê Back</button>
-    <button class="btn bp" onclick="nxt(2)">Next: Biochemical Data ‚Üí</button>
+    <button class="btn bs" onclick="go(1)">← Back</button>
+    <button class="btn bp" onclick="nxt(2)">Next: Biochemical Data →</button>
   </div>
 </div>
 
 <!-- PAGE 3 -->
 <div class="page" id="pg3">
   <div class="sh">
-    <h2>Biochemical Data ‚Äî Pipeline 3</h2>
-    <p>Trend-based laboratory measurements ‚Äî blood tests, urine, biomarkers.<br><strong>What is happening inside the organ over time?</strong></p>
+    <h2>Biochemical Data — Pipeline 3</h2>
+    <p>Trend-based laboratory measurements — blood tests, urine, biomarkers.<br><strong>What is happening inside the organ over time?</strong></p>
   </div>
   <div class="info"><strong>List your top 5 laboratory investigations or biomarkers.</strong> For each one, answer the three questions below.</div>
   <div id="c_bioc"></div>
   <div class="br">
-    <button class="btn bs" onclick="go(2)">‚Üê Back</button>
-    <button class="btn bp" onclick="nxt(3)">Next: Cross-Pipeline ‚Üí</button>
+    <button class="btn bs" onclick="go(2)">← Back</button>
+    <button class="btn bp" onclick="nxt(3)">Next: Cross-Pipeline →</button>
   </div>
 </div>
 
 <!-- PAGE 4 -->
 
-<!-- PAGE 4 ‚Äî CROSS-PIPELINE -->
+<!-- PAGE 4 — CROSS-PIPELINE -->
 <div class="page" id="pg4">
   <div class="sh">
     <h2>Cross-Pipeline Data <span style="font-size:14px;font-weight:400;color:var(--mid)">(Optional)</span></h2>
     <p>Parameters whose clinical meaning spans two or more pipelines simultaneously.<br>
     <strong>Which investigations link structural, functional, and biochemical data together?</strong></p>
   </div>
-  <div class="info"><strong>List up to 5 parameters</strong> that draw clinical meaning from two or more pipelines at once ‚Äî for example, a structural finding that only makes sense alongside a biochemical result. You may re-list parameters already mentioned in the previous sections.</div>
+  <div class="info"><strong>List up to 5 parameters</strong> that draw clinical meaning from two or more pipelines at once — for example, a structural finding that only makes sense alongside a biochemical result. You may re-list parameters already mentioned in the previous sections.</div>
   <div id="c_cross"></div>
   <div class="br">
-    <button class="btn bs" onclick="go(3)">‚Üê Back</button>
-    <button class="btn bp" onclick="nxt(4)">Next: Patient Timeline ‚Üí</button>
+    <button class="btn bs" onclick="go(3)">← Back</button>
+    <button class="btn bp" onclick="nxt(4)">Next: Patient Timeline →</button>
   </div>
 </div>
 
@@ -221,14 +221,14 @@ table.t input:focus{border-bottom-color:var(--black)}
   </div>
 
   <div class="card">
-    <label class="lbl">Q1 ‚Äî For your specialty organ, which investigations from each pipeline are most critical at each stage of patient management?</label>
+    <label class="lbl">Q1 — For your specialty organ, which investigations from each pipeline are most critical at each stage of patient management?</label>
     <div class="tw">
       <table class="t">
         <thead><tr>
           <th style="width:24%">Patient stage</th>
-          <th>Pipeline 1 ‚Äî Anatomical</th>
-          <th>Pipeline 2 ‚Äî Physiological</th>
-          <th>Pipeline 3 ‚Äî Biochemical</th>
+          <th>Pipeline 1 — Anatomical</th>
+          <th>Pipeline 2 — Physiological</th>
+          <th>Pipeline 3 — Biochemical</th>
         </tr></thead>
         <tbody>
           <tr><td class="s">Acute</td><td><input type="text" id="t00"></td><td><input type="text" id="t01"></td><td><input type="text" id="t02"></td></tr>
@@ -242,11 +242,11 @@ table.t input:focus{border-bottom-color:var(--black)}
   <div class="card">
     <label class="lbl">Any other observations<span class="soft">(optional)</span></label>
     <div class="hint">Additional insights on healthcare data, digitalisation, or patient management in your specialty.</div>
-    <textarea class="iline" id="f_add" placeholder="Write here‚Ä¶"></textarea>
+    <textarea class="iline" id="f_add" placeholder="Write here…"></textarea>
   </div>
 
   <div class="br">
-    <button class="btn bs" onclick="go(3)">‚Üê Back</button>
+    <button class="btn bs" onclick="go(3)">← Back</button>
     <button class="btn bsub" id="sbtn" onclick="doSubmit()">Submit Survey</button>
   </div>
   <p style="font-size:12px;color:var(--light);margin-top:9px">Submitting confirms your consent given on page 1.</p>
@@ -254,12 +254,12 @@ table.t input:focus{border-bottom-color:var(--black)}
 
 <!-- Confirmation -->
 <div class="cfm" id="cfm">
-  <div class="cm">‚úì</div>
-  <div class="ct">Survey submitted ‚Äî thank you</div>
+  <div class="cm">✓</div>
+  <div class="ct">Survey submitted — thank you</div>
   <div class="cx">
     Thank you, <strong id="cfmName">Doctor</strong>.<br>
     Your clinical insights are the foundation of the Three-Pipeline Patient Data Framework for Indian patient management systems.<br><br>
-    <em>Dr Gowri Shankar (Guide) ¬∑ MBA Healthcare Management ¬∑ SRM University (Online)</em>
+    <em>Dr Gowri Shankar (Guide) · MBA Healthcare Management · SRM University (Online)</em>
   </div>
 </div>
 
@@ -269,12 +269,12 @@ table.t input:focus{border-bottom-color:var(--black)}
 const SUBMIT_URL = "https://script.google.com/macros/s/AKfycbxgO0QWc4GmZFYlFnWJhkCvm4vHNPnxQDDsrVzoJdoCWYW6x9gBiFO6ACj2f18x_xfJ/exec";
 
 const FREQ = ["Every patient","Most cases","Selective cases","Rarely / special situations"];
-const IMP  = ["5 ‚Äî Cannot omit","4 ‚Äî Important","3 ‚Äî Routinely useful","2 ‚Äî Sometimes useful","1 ‚Äî Rarely relevant"];
+const IMP  = ["5 — Cannot omit","4 — Important","3 — Routinely useful","2 — Sometimes useful","1 — Rarely relevant"];
 const EG   = {
-  anat:{ n:"Echocardiogram (2D + Doppler)",           f:"Every patient",   i:"5 ‚Äî Cannot omit", c:"Confirms structural integrity of valves and chamber dimensions ‚Äî defines the anatomical baseline for all management decisions" },
-  phys:{ n:"Continuous SpO2 monitoring",              f:"Every patient",   i:"5 ‚Äî Cannot omit", c:"Real-time respiratory and circulatory adequacy ‚Äî a sustained drop below 94% triggers immediate clinical review" },
-  bioc:{ n:"Serum Troponin I (serial: 0h ¬∑ 3h ¬∑ 6h)", f:"Selective cases", i:"5 ‚Äî Cannot omit", c:"Rise-and-fall kinetic pattern confirms or excludes acute myocardial injury ‚Äî the trend across time points is diagnostic" },
-  cross:{ n:"Echocardiogram + BNP trend", lnk:"A‚ÜîB", f:"Selective cases", i:"5 ‚Äî Cannot omit", c:"Structural finding (echo) combined with biochemical severity marker (BNP) together stage heart failure ‚Äî neither pipeline alone is sufficient for the management decision" }
+  anat:{ n:"Echocardiogram (2D + Doppler)",           f:"Every patient",   i:"5 — Cannot omit", c:"Confirms structural integrity of valves and chamber dimensions — defines the anatomical baseline for all management decisions" },
+  phys:{ n:"Continuous SpO2 monitoring",              f:"Every patient",   i:"5 — Cannot omit", c:"Real-time respiratory and circulatory adequacy — a sustained drop below 94% triggers immediate clinical review" },
+  bioc:{ n:"Serum Troponin I (serial: 0h · 3h · 6h)", f:"Selective cases", i:"5 — Cannot omit", c:"Rise-and-fall kinetic pattern confirms or excludes acute myocardial injury — the trend across time points is diagnostic" },
+  cross:{ n:"Echocardiogram + BNP trend", lnk:"A↔B", f:"Selective cases", i:"5 — Cannot omit", c:"Structural finding (echo) combined with biochemical severity marker (BNP) together stage heart failure — neither pipeline alone is sufficient for the management decision" }
 };
 
 function buildCards(cid, pfx, eg) {
@@ -297,13 +297,13 @@ function buildCards(cid, pfx, eg) {
     h+=`<div class="ic">
       <div class="inum">${i}</div>
       <div class="iq">Investigation / test name</div>
-      <input class="iline" type="text" id="${pfx}_n${i}" placeholder="Name the investigation, scan, or test‚Ä¶">
+      <input class="iline" type="text" id="${pfx}_n${i}" placeholder="Name the investigation, scan, or test…">
       <div class="iq">How often do you use this?</div>
       <div class="pills">${mkPills(FREQ,'',`${pfx}_f${i}`,false)}</div>
       <div class="iq">How important for clinical decisions?</div>
       <div class="pills">${mkPills(IMP,'',`${pfx}_i${i}`,false)}</div>
       <div class="iq">What does this tell you about the organ?</div>
-      <input class="iline" type="text" id="${pfx}_c${i}" placeholder="One or two lines ‚Äî what clinical information does this provide?">
+      <input class="iline" type="text" id="${pfx}_c${i}" placeholder="One or two lines — what clinical information does this provide?">
     </div>`;
   }
   el.innerHTML = h;
@@ -379,7 +379,7 @@ async function doSubmit(){
   const btn=document.getElementById('sbtn');
   const data=collect();
   btn.disabled=true;
-  btn.innerHTML='<span class="spin"></span>Submitting‚Ä¶';
+  btn.innerHTML='<span class="spin"></span>Submitting…';
   try{await fetch(SUBMIT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});}catch(_){}
   document.querySelectorAll('.page').forEach(p=>{p.style.display='none';});
   document.querySelector('.topbar').style.display='none';
@@ -394,7 +394,7 @@ async function doSubmit(){
 function buildCrossCards(cid, eg) {
   const el = document.getElementById(cid);
   if(!el) return;
-  const LNK = ["A‚ÜîP (Anatomical ‚Üî Physiological)","P‚ÜîB (Physiological ‚Üî Biochemical)","A‚ÜîB (Anatomical ‚Üî Biochemical)","All three pipelines"];
+  const LNK = ["A↔P (Anatomical ↔ Physiological)","P↔B (Physiological ↔ Biochemical)","A↔B (Anatomical ↔ Biochemical)","All three pipelines"];
   const mkPills = (opts, sel, nm, dis) =>
     opts.map(o => `<label class="pill${o===sel?' on':''}"${dis?' style="pointer-events:none"':''}><input type="radio" name="${nm}" value="${o}"${dis?' disabled':''}><span class="dot"></span>${o}</label>`).join('');
   let h = `<div class="ic eg">
@@ -414,7 +414,7 @@ function buildCrossCards(cid, eg) {
     h+=`<div class="ic">
       <div class="inum">${i}</div>
       <div class="iq">Investigation / parameter name</div>
-      <input class="iline" type="text" id="cross_n${i}" placeholder="Name the investigation or parameter‚Ä¶">
+      <input class="iline" type="text" id="cross_n${i}" placeholder="Name the investigation or parameter…">
       <div class="iq">Which pipelines does this parameter link?</div>
       <div class="pills">${mkPills(LNK,'',`cross_l${i}`,false)}</div>
       <div class="iq">How often do you use this combination?</div>
@@ -422,7 +422,7 @@ function buildCrossCards(cid, eg) {
       <div class="iq">How important for clinical decisions?</div>
       <div class="pills">${mkPills(IMP,'',`cross_i${i}`,false)}</div>
       <div class="iq">What does the combination tell you that no single pipeline could?</div>
-      <input class="iline" type="text" id="cross_c${i}" placeholder="Describe the additional clinical insight‚Ä¶">
+      <input class="iline" type="text" id="cross_c${i}" placeholder="Describe the additional clinical insight…">
     </div>`;
   }
   el.innerHTML = h;
