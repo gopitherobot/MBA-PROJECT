@@ -63,6 +63,9 @@ table.t tr:nth-child(even) td{background:#fafafa}
 table.t td.s{font-weight:600;font-size:12px;color:var(--dark)}
 table.t input{width:100%;border:none;border-bottom:1px solid #e8e8e8;padding:3px 0;font-size:13px;background:transparent;outline:none}
 table.t input:focus{border-bottom-color:var(--black)}
+table.t textarea{width:100%;min-height:110px;border:1px solid var(--border);border-radius:5px;padding:7px 9px;font-size:13px;line-height:1.6;font-family:inherit;background:#fff;outline:none;resize:vertical;color:var(--black)}
+table.t textarea:focus{border-color:var(--black)}
+table.t textarea::placeholder{color:#ccc;font-style:italic}
 .br{display:flex;gap:9px;margin-top:22px;flex-wrap:wrap;align-items:center}
 .btn{padding:10px 26px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all .2s}
 .bp{background:var(--black);color:#fff}.bp:hover{background:#2a2a2a}
@@ -231,9 +234,9 @@ table.t input:focus{border-bottom-color:var(--black)}
           <th>Pipeline 3 — Biochemical</th>
         </tr></thead>
         <tbody>
-          <tr><td class="s">Acute</td><td><input type="text" id="t00"></td><td><input type="text" id="t01"></td><td><input type="text" id="t02"></td></tr>
-          <tr><td class="s">Sub-acute</td><td><input type="text" id="t10"></td><td><input type="text" id="t11"></td><td><input type="text" id="t12"></td></tr>
-          <tr><td class="s">Chronic</td><td><input type="text" id="t20"></td><td><input type="text" id="t21"></td><td><input type="text" id="t22"></td></tr>
+          <tr><td class="s">Emergency &amp; Acute phase</td><td><textarea id="t00" rows="5" placeholder="Pipeline 1 investigations…"></textarea></td><td><textarea id="t01" rows="5" placeholder="Pipeline 2 investigations…"></textarea></td><td><textarea id="t02" rows="5" placeholder="Pipeline 3 investigations…"></textarea></td></tr>
+          <tr><td class="s">Monitoring &amp; Recovery phase</td><td><textarea id="t10" rows="5" placeholder="Pipeline 1 investigations…"></textarea></td><td><textarea id="t11" rows="5" placeholder="Pipeline 2 investigations…"></textarea></td><td><textarea id="t12" rows="5" placeholder="Pipeline 3 investigations…"></textarea></td></tr>
+          <tr><td class="s">Chronic &amp; Surveillance phase</td><td><textarea id="t20" rows="5" placeholder="Pipeline 1 investigations…"></textarea></td><td><textarea id="t21" rows="5" placeholder="Pipeline 2 investigations…"></textarea></td><td><textarea id="t22" rows="5" placeholder="Pipeline 3 investigations…"></textarea></td></tr>
         </tbody>
       </table>
     </div>
